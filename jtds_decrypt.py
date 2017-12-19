@@ -5,9 +5,9 @@
 __version__ = "0.1.1"
 __program__ = "jtds_decrypt v" + __version__
 __description__ = "jTDS (JDBC 3.0) Password Decrypter"
-__author__ = "it.sec (JaRu)"
+__author__ = "whoot"
 __licence__ = "BSD Licence"
-__status__ = "Development"
+__status__ = "Final"
 
 
 import datetime
@@ -138,7 +138,7 @@ if __name__ == "__main__":
 	print('\n' + 50*'*')
 	print('\t' + __program__ )
 	print('\t' + __description__ )
-	print('\t' + '(c)2014 by ' + __author__)
+	print('\t' + '(c)2014 - 2017 by ' + __author__)
 	print('\t' + 'Status:\t' + __status__)
 	print('\t' + 'For legal purposes only!')
 	print(50*'*')
