@@ -1,16 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#-------------------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/)
+#-------------------------------------------------------------------------------
 
 # Version information 
-__version__ = "0.1.1"
+__version__ = "1.0"
 __program__ = "jtds_decrypt v" + __version__
 __description__ = "jTDS (JDBC 3.0) Password Decrypter"
-__author__ = "whoot"
+__author__ = 'https://github.com/whoot'
 __licence__ = "BSD Licence"
 __status__ = "Final"
 
-
-import datetime
 import argparse
 
 encoding = {'b3':'a',
@@ -102,43 +114,35 @@ encoding = {'b3':'a',
 # Main
 def main(argv):
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-p', '--pass', dest='password', type=str, nargs='+', help='Password-Hash to crack.')
+	parser.add_argument('-p', '--pass', dest='password', type=str, nargs='+', help='Passwordhash to crack.')
 	args = parser.parse_args()
 
 	try:
 		if args.password:
-			# get rid of every additional symbol, caused by input
-			password = str(args.password).replace('\'', '')
-			password = password.replace('[', '')
-			password = password.replace(']', '')
-			password = password.replace(' ', '')
 			# get rid of delimiter
-			password = password.replace('a5', '')
+			password = str(args.password).replace('a5', '')
 			# start decoding
 			for char in encoding:
 				password = password.replace(char, encoding[char])
-			# print password
-			print "\n\nPassword is: " + password
 
-	except KeyboardInterrupt:
-		print Fore.RED + "\nReceived keyboard interrupt.\nQuitting..." + Fore.RESET
-		exit(1)
+			password = password.replace(' ', '')
+			password = password.replace('\'', '')
+			password = password.replace('[', '')
+			password = password.replace(']', '')
+			password = password.replace(' ', '')
+			print '\nPassword is: %s\n' %password
+
 	except Exception, e:
 		import traceback
 		print ('generic exception: ', traceback.format_exc())
 
-	finally:
-		print '\n'
-		now = datetime.datetime.now()
-		print __program__ + ' finished at ' + now.strftime("%Y-%m-%d %H:%M:%S") + '\n'
-		return True
 
 if __name__ == "__main__":
 	import sys
 	print('\n' + 50*'*')
 	print('\t' + __program__ )
 	print('\t' + __description__ )
-	print('\t' + '(c)2014 - 2017 by ' + __author__)
+	print('\t' + __author__)
 	print('\t' + 'Status:\t' + __status__)
 	print('\t' + 'For legal purposes only!')
 	print(50*'*')
