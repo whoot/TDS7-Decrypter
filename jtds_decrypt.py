@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
+# Typo3 Enumerator - Automatic Typo3 Enumeration Tool
+# Copyright (c) Jan Rude (https://github.com/whoot)
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -114,23 +117,24 @@ encoding = {'b3':'a',
 # Main
 def main(argv):
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-p', '--pass', dest='password', type=str, nargs='+', help='Passwordhash to crack.')
+	parser.add_argument('-p', dest='password', type=str, help='Passwordhash to crack.')
 	args = parser.parse_args()
 
 	try:
 		if args.password:
 			# get rid of delimiter
-			password = str(args.password).replace('a5', '')
-			# start decoding
-			for char in encoding:
-				password = password.replace(char, encoding[char])
+			password = args.password.replace('a5', '')
 
-			password = password.replace(' ', '')
-			password = password.replace('\'', '')
-			password = password.replace('[', '')
-			password = password.replace(']', '')
-			password = password.replace(' ', '')
-			print '\nPassword is: %s\n' %password
+			# add to list and remove space
+			chars = password.split(' ')
+			chars = [x for x in chars if x != '']
+
+			# start decoding
+			decoded = ''
+			for char in chars:
+				decoded += encoding[char]
+
+			print '\nPassword is: %s\n' %decoded
 
 	except Exception, e:
 		import traceback
