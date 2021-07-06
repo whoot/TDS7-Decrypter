@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
-# Typo3 Enumerator - Automatic Typo3 Enumeration Tool
+# TDS7 Password Decryptor
 # Copyright (c) Jan Rude (https://github.com/whoot)
 #
 # This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,8 @@
 
 # Version information 
 __version__ = "1.0"
-__program__ = "jtds_decrypt v" + __version__
-__description__ = "jTDS (JDBC 3.0) Password Decrypter"
+__program__ = "tds_decrypt v" + __version__
+__description__ = "TDS Login Password Decrypter"
 __author__ = 'https://github.com/whoot'
 __licence__ = "BSD Licence"
 __status__ = "Final"
