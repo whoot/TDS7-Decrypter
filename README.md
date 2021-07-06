@@ -1,7 +1,7 @@
 TDS7-Decrypter
 ==============
 
-Decrypt TDS7 Login Passwords
+Decrypt TDS7 Login Passwords used for MS-SQL Database Logins
 
 Installation
 ----
